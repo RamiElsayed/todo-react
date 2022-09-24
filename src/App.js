@@ -8,7 +8,7 @@ export const App = () => {
   };
   return (
     <div>
-      <Header title="My toDO Items" todoCount={10} />
+      <Header title="My toDo Items" todoCount={10} />
       <TodoForm onsubmit={onsubmit} />
       <Todos />
     </div>
