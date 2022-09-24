@@ -1,11 +1,17 @@
 import { TodoCard } from "../TodoCard";
-export const Todos = () => {
+export const Todos = ({ todos, onComplete, onDelete }) => {
   return (
-    <div>
-      <TodoCard />
-      <TodoCard />
-      <TodoCard />
-      <TodoCard />
-    </div>
+    <section className="container d-flex flex-wrap justify-content-center">
+      {todos.map((todo) => {
+        return (
+          <TodoCard
+            key={todo.id}
+            {...todo}
+            onComplete={onComplete}
+            onDelete={onDelete}
+          />
+        );
+      })}
+    </section>
   );
 };
