@@ -6,6 +6,9 @@ import { TodoForm } from "./components/TodoForm";
 import { Todos } from "./components/Todos";
 
 export const App = () => {
+  const [todos, setTodos] = useState(
+    JSON.parse(localStorage.getItem("todoItems")) || []
+  );
   const onComplete = (event) => {
     console.log("onComplete");
   };
@@ -15,7 +18,7 @@ export const App = () => {
   return (
     <div>
       <Header title="My toDo Items" todoCount={10} />
-      <TodoForm />
+      <TodoForm setTodos={setTodos} />
       <Todos
         todos={JSON.parse(localStorage.getItem("todoItems")) || []}
         onComplete={onComplete}

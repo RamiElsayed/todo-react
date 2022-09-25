@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-export const TodoForm = () => {
+export const TodoForm = ({ setTodos }) => {
   const [title, setTitle] = useState("");
   const [content, setcontent] = useState("");
   const [dueDate, setdueDate] = useState(Date.now());
@@ -21,6 +21,7 @@ export const TodoForm = () => {
         dueDate,
       },
     ];
+    setTodos(newTodos);
     localStorage.setItem("todoItems", JSON.stringify(newTodos));
   };
 
