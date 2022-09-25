@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 
 import { Header } from "./components/Header";
 import { TodoForm } from "./components/TodoForm";
@@ -9,19 +8,20 @@ export const App = () => {
   const [todos, setTodos] = useState(
     JSON.parse(localStorage.getItem("todoItems")) || []
   );
-  const onComplete = (event) => {
-    console.log("onComplete");
-  };
   const onDelete = (event) => {
-    console.log("onDelete");
+    const todosFromLS = JSON.parse(localStorage.getItem("todoItems")) || [];
+    const newTodos = todosFromLS.filter((todo) => {
+      return todo.id !== event.currentTarget.id;
+    });
+    setTodos(newTodos);
+    localStorage.setItem("todoItems", JSON.stringify(newTodos));
   };
   return (
     <div>
-      <Header title="My toDo Items" todoCount={10} />
+      <Header title="My toDo Items" todoCount={todos.length} />
       <TodoForm setTodos={setTodos} />
       <Todos
         todos={JSON.parse(localStorage.getItem("todoItems")) || []}
-        onComplete={onComplete}
         onDelete={onDelete}
       />
     </div>

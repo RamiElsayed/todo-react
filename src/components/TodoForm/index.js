@@ -8,21 +8,27 @@ export const TodoForm = ({ setTodos }) => {
   const [title, setTitle] = useState("");
   const [content, setcontent] = useState("");
   const [dueDate, setdueDate] = useState(Date.now());
+  const [error, setError] = useState();
 
   const onSubmit = (event) => {
     event.preventDefault();
-    const todosFromLS = JSON.parse(localStorage.getItem("todoItems")) || [];
-    const newTodos = [
-      ...todosFromLS,
-      {
-        id: uuidv4(),
-        title,
-        content,
-        dueDate,
-      },
-    ];
-    setTodos(newTodos);
-    localStorage.setItem("todoItems", JSON.stringify(newTodos));
+    if (title && content) {
+      const todosFromLS = JSON.parse(localStorage.getItem("todoItems")) || [];
+      const newTodos = [
+        ...todosFromLS,
+        {
+          id: uuidv4(),
+          title,
+          content,
+          dueDate,
+        },
+      ];
+      setTodos(newTodos);
+      setError();
+      localStorage.setItem("todoItems", JSON.stringify(newTodos));
+    } else {
+      setError("Please complete form");
+    }
   };
 
   console.log(title, content);
@@ -66,6 +72,11 @@ export const TodoForm = ({ setTodos }) => {
         <button type="submit" className="btn btn-primary">
           Submit
         </button>
+        {error && (
+          <div id="error" class="form-text text-danger">
+            {error}
+          </div>
+        )}
       </form>
     </section>
   );
