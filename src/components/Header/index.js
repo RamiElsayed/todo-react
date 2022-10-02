@@ -2,7 +2,7 @@ import "./Header.css";
 export const Header = ({ title, todoCount }) => {
   return (
     <div className="jumbotron text-center">
-      <h1 className="display-4">My ToDo Items</h1>
+      <h1 className="display-4">{title}</h1>
       <p className="lead">
         {todoCount
           ? `You have ${todoCount} things to do`

@@ -20,7 +20,7 @@ export const App = () => {
   };
   return (
     <div>
-      <Header title="My toDo Items" todoCount={todos.length} />
+      <Header title="My ToDo Items" todoCount={todos.length} />
       <SetTodoContext.Provider
         value={{
           setTodos,
