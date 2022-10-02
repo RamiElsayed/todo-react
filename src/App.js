@@ -9,6 +9,7 @@ export const App = () => {
   const [todos, setTodos] = useState(
     JSON.parse(localStorage.getItem("todoItems")) || []
   );
+
   const onDelete = (event) => {
     const todosFromLS = JSON.parse(localStorage.getItem("todoItems")) || [];
     const newTodos = todosFromLS.filter((todo) => {
