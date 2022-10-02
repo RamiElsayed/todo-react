@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import DatePicker from "react-datepicker";
 import { v4 as uuidv4 } from "uuid";
 
 import "react-datepicker/dist/react-datepicker.css";
+import { AppContext } from "../../App";
 
-export const TodoForm = ({ setTodos }) => {
+export const TodoForm = () => {
+  const { setTodos } = useContext(AppContext);
   const [title, setTitle] = useState("");
   const [content, setcontent] = useState("");
   const [dueDate, setdueDate] = useState(Date.now());
