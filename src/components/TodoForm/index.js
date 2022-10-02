@@ -3,10 +3,10 @@ import DatePicker from "react-datepicker";
 import { v4 as uuidv4 } from "uuid";
 
 import "react-datepicker/dist/react-datepicker.css";
-import { AppContext } from "../../App";
+import { SetTodoContext } from "../../App";
 
 export const TodoForm = () => {
-  const { setTodos } = useContext(AppContext);
+  const { setTodos } = useContext(SetTodoContext);
   const [title, setTitle] = useState("");
   const [content, setcontent] = useState("");
   const [dueDate, setdueDate] = useState(Date.now());

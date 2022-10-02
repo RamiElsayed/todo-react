@@ -4,7 +4,7 @@ import { Header } from "./components/Header";
 import { TodoForm } from "./components/TodoForm";
 import { Todos } from "./components/Todos";
 
-export const AppContext = React.createContext();
+export const SetTodoContext = React.createContext();
 export const App = () => {
   const [todos, setTodos] = useState(
     JSON.parse(localStorage.getItem("todoItems")) || []
@@ -20,17 +20,16 @@ export const App = () => {
   return (
     <div>
       <Header title="My toDo Items" todoCount={todos.length} />
-      <AppContext.Provider
+      <SetTodoContext.Provider
         value={{
           setTodos,
+          todos,
+          onDelete,
         }}
       >
         <TodoForm />
-        <Todos
-          todos={JSON.parse(localStorage.getItem("todoItems")) || []}
-          onDelete={onDelete}
-        />
-      </AppContext.Provider>
+        <Todos />
+      </SetTodoContext.Provider>
     </div>
   );
 };
